@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Bucket sort implementation
+ * O(n²)
+ *
+ * @see <a href="https://www.geeksforgeeks.org/bucket-sort-2/">Bucket sort</a>
+ */
 public final class BucketSort extends Sorter{
     private BucketSort(){}
 

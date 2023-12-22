@@ -2,23 +2,36 @@ public final class FunctionCalculator {
     private FunctionCalculator() {
     }
 
-    public static int findFunctionType(int[] arr) {
+    public static String getFunction(int[] arr) {
         if (arr.length < 10) {
             throw new RuntimeException("Array is too small");
         }
 
+        int functionType = findFunctionType(arr);
+        return switch (functionType) {
+            case 0 -> String.format("O(1) = %d(1)", arr[0]);
+            case 1 -> String.format("O(n) = %d(n)", arr[1] - arr[0]);
+            case 2 -> "O(n²)";
+            case 3 -> "Exponential";
+            default -> "Unknown";
+        };
+    }
+
+    private static int findFunctionType(int[] arr) {
         if (constant(arr)) return 0;
 
         if (linear(arr)) return 1;
 
         if (quadratic(arr)) return 2;
 
+        if (exponential(arr)) return 3;
+
         return -1;
     }
 
     /**
      * Checks if the array is constant
-     * <p></p>
+     * <p>O(1)</p>
      * <p>If the difference between two consecutive elements is 0, then it is an constant sequence.</p>
      * <table border="1">
      * 		<tbody>
@@ -53,9 +66,9 @@ public final class FunctionCalculator {
     }
 
     /**
-     * Checks if the array is arithmetic
-     * <p></p>
-     * <p>If the difference between two consecutive elements is the same, then it is an arithmetic sequence.</p>
+     * Checks if the array is linear
+     * <p>O(n)</p>
+     * <p>If the difference between two consecutive elements is the same than the difference between two other consecutive elements, then it is a linear sequence.</p>
      * <table border="1">
      * 		<tbody>
      * 			<tr>
@@ -80,8 +93,8 @@ public final class FunctionCalculator {
      * 	</table>
      *
      * @param arr array to check
-     * @return true if the array is arithmetic
-     * @see <a href="https://en.wikipedia.org/wiki/Arithmetic_function">Arithmetic function</a>
+     * @return true if the array is linear
+     * @see <a href="https://en.wikipedia.org/wiki/Linear_function">Linear function</a>
      */
     private static boolean linear(int[] arr) {
         int dif = arr[1] - arr[0];
@@ -91,7 +104,7 @@ public final class FunctionCalculator {
     /**
      * Checks if the array is quadratic
      *
-     * <p></p>
+     * <p>O(n²)</p>
      * <p>If the difference between the difference of two consecutive elements is the same, then it is a quadratic sequence.</p>
      * <table border="1">
      * 		<tbody>
@@ -138,11 +151,45 @@ public final class FunctionCalculator {
         int difDif = difs[1] - difs[0];
         int arrLength = arr.length;
 
-        return difDif == difs[2] - difs[1] && arr[4] == arr[3] + arr[3] - arr[2] + difDif && arr[arrLength - 1] == arr[arrLength - 2] - arr[arrLength - 3] + difDif;
+        return difDif == difs[2] - difs[1] && arr[4] == arr[3] + arr[3] - arr[2] + difDif && arr[arrLength - 1] == arr[arrLength - 2] + arr[arrLength - 2] - arr[arrLength - 3] + difDif;
     }
 
-
-    private static boolean logarithmic(int[] arr){
-
+    /**
+     * Checks if the array is exponential
+     *
+     * <p>O(2^n)</p>
+     * <p>If the quotient of two consecutive elements is the same as the quotient of two other consecutive elements, then the sequence is exponential</p>
+     *
+     * <table border="1">
+     * 		<tbody>
+     * 			<tr>
+     * 				<td>&nbsp;2</td>
+     * 				<td>&nbsp;</td>
+     * 				<td>&nbsp;6</td>
+     * 				<td>&nbsp;</td>
+     * 				<td>&nbsp;18</td>
+     * 				<td>&nbsp;</td>
+     * 				<td>&nbsp;54</td>
+     * 			</tr>
+     * 			<tr>
+     * 				<td>&nbsp;</td>
+     * 				<td>*3&nbsp;</td>
+     * 				<td>&nbsp;</td>
+     * 				<td>*3&nbsp;</td>
+     * 				<td>&nbsp;</td>
+     * 				<td>*3&nbsp;</td>
+     * 				<td>&nbsp;</td>
+     * 			</tr>
+     * 		</tbody>
+     * 	</table>
+     *
+     * @param arr array to check
+     * @return true if the array is exponential
+     * @see <a href="https://en.wikipedia.org/wiki/Exponential_function">Exponential function</a>
+     */
+    private static boolean exponential(int[] arr) {
+        double quotient = (double) arr[1] / arr[0];
+        int size = arr.length - 1;
+        return quotient == (double) arr[2] / arr[1] && arr[0] * Math.pow(quotient, size) == arr[size] && arr[0] * Math.pow(quotient, 5) == arr[5];
     }
 }

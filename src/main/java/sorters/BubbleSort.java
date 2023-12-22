@@ -3,6 +3,13 @@ package sorters;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Bubble sort implementation
+ * O(n²)
+ *
+ * @see <a href="https://www.geeksforgeeks.org/bubble-sort/">Bubble sort</a>
+ * @see Sorter
+ */
 public final class BubbleSort extends Sorter{
     private BubbleSort() {
     }

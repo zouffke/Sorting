@@ -3,6 +3,13 @@ package sorters;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Selection sort implementation
+ * O(n²)
+ *
+ * @see <a href="https://www.geeksforgeeks.org/selection-sort/">Selection sort</a>
+ * @see Sorter
+ */
 public final class SelectionSort extends Sorter{
     private SelectionSort() {
     }

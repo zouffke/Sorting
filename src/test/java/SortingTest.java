@@ -37,16 +37,21 @@ class SortingTest {
     }
 
     private void execute(Runnable r) {
+        List<Integer> se = new ArrayList<>();
         for (int i = 10; i < 1001; i += 10) {
             fillList(i);
             r.run();
             int compared = SortObject.compareCounter + SortObject.equalsCounter + SortObject.hashCounter;
+            if (i >= 50 && i <= 150) {
+                se.add(compared);
+            }
             assertTrue(checkSort(list));
             System.out.printf("%d\n", compared);
             SortObject.compareCounter = 0;
             SortObject.equalsCounter = 0;
             SortObject.hashCounter = 0;
         }
+        System.out.println(FunctionCalculator.getFunction(se.stream().mapToInt(i -> i).toArray()));
     }
 
     private void fillList(int size) {
