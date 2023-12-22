@@ -5,7 +5,6 @@ import sorters.SelectionSort;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -20,25 +19,33 @@ class SortingTest {
     }
 
     @Test
-    void selection(){
+    void selection() {
         System.out.println("SELECTION SORT");
         execute(() -> SelectionSort.sort(list));
     }
 
     @Test
-    void insertion(){
+    void insertion() {
         System.out.println("INSERTION SORT");
         execute(() -> InsertionSort.sort(list));
     }
 
-    private void execute(Runnable r){
+    @Test
+    void bucket() {
+        System.out.println("BUCKET SORT");
+        execute(() -> sorters.BucketSort.sort(list));
+    }
+
+    private void execute(Runnable r) {
         for (int i = 10; i < 1001; i += 10) {
             fillList(i);
             r.run();
-            int compared = SortObject.compareCounter;
+            int compared = SortObject.compareCounter + SortObject.equalsCounter + SortObject.hashCounter;
             assertTrue(checkSort(list));
             System.out.printf("%d\n", compared);
             SortObject.compareCounter = 0;
+            SortObject.equalsCounter = 0;
+            SortObject.hashCounter = 0;
         }
     }
 

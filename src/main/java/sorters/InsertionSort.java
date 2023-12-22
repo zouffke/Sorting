@@ -3,7 +3,7 @@ package sorters;
 import java.util.Arrays;
 import java.util.List;
 
-public final class InsertionSort {
+public final class InsertionSort extends Sorter {
 
     private InsertionSort() {
     }
@@ -23,8 +23,6 @@ public final class InsertionSort {
     public static <T extends Comparable<T>> void sort(T[] arr) {
         List<T> list = Arrays.stream(arr).toList();
         sort(list);
-        for (int i = 0; i < list.size(); i++) {
-            arr[i] = list.get(i);
-        }
+        Sorter.updateArr(list, arr);
     }
 }

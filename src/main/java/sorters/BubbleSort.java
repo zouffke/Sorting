@@ -3,7 +3,7 @@ package sorters;
 import java.util.Arrays;
 import java.util.List;
 
-public final class BubbleSort {
+public final class BubbleSort extends Sorter{
     private BubbleSort() {
     }
 
@@ -25,8 +25,6 @@ public final class BubbleSort {
     public static <T extends Comparable<T>> void sort(T[] arr) {
         List<T> list = Arrays.stream(arr).toList();
         sort(list);
-        for (int i = 0; i < list.size(); i++) {
-            arr[i] = list.get(i);
-        }
+        Sorter.updateArr(list, arr);
     }
 }
