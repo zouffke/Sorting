@@ -1,4 +1,4 @@
-package sorters;
+package sorting.sorters;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,6 +37,6 @@ public final class BucketSort extends Sorter{
     public static <T extends Comparable<T>> void sort(T[] arr){
         List<T> list = Arrays.stream(arr).toList();
         sort(list);
-        Sorter.updateArr(list, arr);
+        updateArr(list, arr);
     }
 }

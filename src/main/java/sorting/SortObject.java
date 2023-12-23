@@ -1,3 +1,5 @@
+package sorting;
+
 import java.util.Objects;
 
 public class SortObject implements Comparable<SortObject>{

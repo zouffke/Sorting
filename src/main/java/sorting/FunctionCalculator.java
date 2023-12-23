@@ -1,3 +1,5 @@
+package sorting;
+
 public final class FunctionCalculator {
     private FunctionCalculator() {
     }

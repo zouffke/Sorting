@@ -1,4 +1,4 @@
-package sorters;
+package sorting.sorters;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,6 +32,6 @@ public final class BubbleSort extends Sorter{
     public static <T extends Comparable<T>> void sort(T[] arr) {
         List<T> list = Arrays.stream(arr).toList();
         sort(list);
-        Sorter.updateArr(list, arr);
+        updateArr(list, arr);
     }
 }
