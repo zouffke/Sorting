@@ -10,9 +10,19 @@ import java.util.List;
  *
  * @see <a href="https://www.geeksforgeeks.org/bucket-sort-2/">Bucket sort</a>
  */
-public final class BucketSort extends Sorter{
-    private BucketSort(){}
+public final class BucketSort extends Sorter {
+    /**
+     * Prevent instantiation
+     */
+    private BucketSort() {
+    }
 
+    /**
+     * Sorts a list of comparable objects using bucket sort
+     *
+     * @param list the list to be sorted
+     * @param <T>  the type of the objects in the list
+     */
     public static <T extends Comparable<T>> void sort(List<T> list) {
         int max = list.stream().max(T::compareTo).get().hashCode();
         int min = list.stream().min(T::compareTo).get().hashCode();
@@ -34,7 +44,15 @@ public final class BucketSort extends Sorter{
         }
     }
 
-    public static <T extends Comparable<T>> void sort(T[] arr){
+    /**
+     * Sorts an array of comparable objects using bucket sort
+     *
+     * @param arr the array to be sorted
+     * @param <T> the type of the objects in the array
+     * @see #sort(List)
+     * @see Sorter#updateArr(List, Object[])
+     */
+    public static <T extends Comparable<T>> void sort(T[] arr) {
         List<T> list = Arrays.stream(arr).toList();
         sort(list);
         updateArr(list, arr);

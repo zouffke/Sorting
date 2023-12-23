@@ -1,9 +1,20 @@
 package sorting;
 
+/**
+ * Class for calculating the function of an array
+ */
 public final class FunctionCalculator {
+    /**
+     * Private constructor
+     */
     private FunctionCalculator() {
     }
 
+    /**
+     * Returns the function of the array
+     * @param arr array to check
+     * @return function of the array
+     */
     public static String getFunction(int[] arr) {
         if (arr.length < 10) {
             throw new RuntimeException("Array is too small");
@@ -19,6 +30,12 @@ public final class FunctionCalculator {
         };
     }
 
+    /**
+     * Finds the type of the function
+     *
+     * @param arr array to check
+     * @return 0 if the function is constant, 1 if the function is linear, 2 if the function is quadratic, 3 if the function is exponential, -1 if the function is unknown
+     */
     private static int findFunctionType(int[] arr) {
         if (constant(arr)) return 0;
 
@@ -100,7 +117,7 @@ public final class FunctionCalculator {
      */
     private static boolean linear(int[] arr) {
         int dif = arr[1] - arr[0];
-        return dif * 10 == arr[9] && arr[5] + dif == arr[6];
+        return arr[0] + dif * 10 == arr[arr.length - 1] && arr[5] + dif == arr[6];
     }
 
     /**
@@ -151,6 +168,7 @@ public final class FunctionCalculator {
         }
 
         int difDif = difs[1] - difs[0];
+        if (difDif == 0) return false;
         int arrLength = arr.length;
 
         return difDif == difs[2] - difs[1] && arr[4] == arr[3] + arr[3] - arr[2] + difDif && arr[arrLength - 1] == arr[arrLength - 2] + arr[arrLength - 2] - arr[arrLength - 3] + difDif;

@@ -23,32 +23,27 @@ class SortingTest {
         executeSorter = new ExecuteSorter();
     }
 
-    @BeforeEach
-    void setUp() {
-        executeSorter.fillList(1000);
-    }
-
     @Test
     void bubble() {
         System.out.println("BUBBLE SORT");
-        assertTrue(executeSorter.execute(() -> BubbleSort.sort(executeSorter.getList())));
+        assertTrue(executeSorter.execute(() -> BubbleSort.sort(executeSorter.getList()), "bubble.csv"));
     }
 
     @Test
     void selection() {
         System.out.println("SELECTION SORT");
-        assertTrue(executeSorter.execute(() -> SelectionSort.sort(executeSorter.getList())));
+        assertTrue(executeSorter.execute(() -> SelectionSort.sort(executeSorter.getList()), "selection.csv"));
     }
 
     @Test
     void insertion() {
         System.out.println("INSERTION SORT");
-        assertTrue(executeSorter.execute(() -> InsertionSort.sort(executeSorter.getList())));
+        assertTrue(executeSorter.execute(() -> InsertionSort.sort(executeSorter.getList()), "insertion.csv"));
     }
 
     @Test
     void bucket() {
         System.out.println("BUCKET SORT");
-        assertTrue(executeSorter.execute(() -> BucketSort.sort(executeSorter.getList())));
+        assertTrue(executeSorter.execute(() -> BucketSort.sort(executeSorter.getList()), "bucket.csv"));
     }
 }

@@ -11,9 +11,18 @@ import java.util.List;
  */
 public final class InsertionSort extends Sorter {
 
+    /**
+     * Prevent instantiation of utility class
+     */
     private InsertionSort() {
     }
 
+    /**
+     * Sorts a list of comparable objects in ascending order using insertion sort
+     *
+     * @param list the list to be sorted
+     * @param <T>  the type of the objects in the list
+     */
     public static <T extends Comparable<T>> void sort(List<T> list) {
         for (int i = 1; i < list.size(); i++) {
             int j = i;
@@ -26,6 +35,14 @@ public final class InsertionSort extends Sorter {
         }
     }
 
+    /**
+     * Sorts an array of comparable objects in ascending order using insertion sort
+     *
+     * @param arr the array to be sorted
+     * @param <T> the type of the objects in the array
+     * @see #sort(List)
+     * @see Sorter#updateArr(List, Object[])
+     */
     public static <T extends Comparable<T>> void sort(T[] arr) {
         List<T> list = Arrays.stream(arr).toList();
         sort(list);
