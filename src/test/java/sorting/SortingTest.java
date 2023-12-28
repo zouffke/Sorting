@@ -72,7 +72,7 @@ class SortingTest {
     void merge() {
         System.out.println("MERGE SORT");
         List<Integer> operations = new ArrayList<>();
-        for (int i = 10; i <= 1000; i += 10) {
+        for (int i = 10; i <= 10000; i += 10) {
             fillList(i);
             operations.add(executeSorter.execute(() -> MergeSort.sort(list)));
             assertTrue(checkSort(list));

@@ -12,10 +12,9 @@ public final class ExecuteSorter {
     }
 
     /**
-     * Executes sorting algorithms and calculates their complexity.
+     * Executes sorting algorithms
      *
      * @param r        Runnable object.
-     * @param filename name of the file to write sequence to.
      * @see FunctionCalculator#getFunction(int[])
      */
     public int execute(Runnable r) {
