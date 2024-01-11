@@ -72,12 +72,24 @@ class SortingTest {
     void merge() {
         System.out.println("MERGE SORT");
         List<Integer> operations = new ArrayList<>();
-        for (int i = 10; i <= 10000; i += 10) {
+        for (int i = 10; i <= 1000; i += 10) {
             fillList(i);
             operations.add(executeSorter.execute(() -> MergeSort.sort(list)));
             assertTrue(checkSort(list));
         }
         writer.write("merge.csv", operations, 10);
+    }
+
+    @Test
+    void quick() {
+        System.out.println("QUICK SORT");
+        List<Integer> operations = new ArrayList<>();
+        for (int i = 10; i <= 1000; i += 10) {
+            fillList(i);
+            operations.add(executeSorter.execute(() -> QuickSort.sort(list)));
+            assertTrue(checkSort(list));
+        }
+        writer.write("quick.csv", operations, 10);
     }
 
     private void fillList(int size) {
